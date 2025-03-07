@@ -162,18 +162,14 @@ class _AddWheelScreenState extends State<AddWheelScreen> {
         context: context,
         builder: (BuildContext context) {
           return CupertinoAlertDialog(
-            title: Text(
-              "Alert",
-              style: TextStyle(fontSize: 20),
-            ),
             content: Text(
-              "Tow or more items must be set.",
+              "至少要設定兩個項目。",
               style: TextStyle(fontSize: 16),
             ),
             actions: [
               CupertinoDialogAction(
                 child: Text(
-                  'OK',
+                  '確定',
                   style: TextStyle(fontSize: 20, color: Color(0xFF1cafff)),
                 ),
                 onPressed: () {
@@ -190,18 +186,14 @@ class _AddWheelScreenState extends State<AddWheelScreen> {
         context: context,
         builder: (BuildContext context) {
           return CupertinoAlertDialog(
-            title: Text(
-              "Confirmation",
-              style: TextStyle(fontSize: 20),
-            ),
             content: Text(
-              "Aue you sure to remove this item?",
+              "您確定刪除該項目嗎？",
               style: TextStyle(fontSize: 16),
             ),
             actions: [
               CupertinoDialogAction(
                 child: Text(
-                  'NO',
+                  '取消',
                   style: TextStyle(fontSize: 20, color: Color(0xFF1cafff)),
                 ),
                 onPressed: () {
@@ -210,7 +202,7 @@ class _AddWheelScreenState extends State<AddWheelScreen> {
               ),
               CupertinoDialogAction(
                 child: Text(
-                  'YES',
+                  '刪除',
                   style: TextStyle(fontSize: 20, color: Color(0xFFfb6e74)),
                 ),
                 onPressed: () {
@@ -275,7 +267,7 @@ class _AddWheelScreenState extends State<AddWheelScreen> {
               toggleEditMode();
             },
             child: Text(
-              editMode ? 'Done' : 'Edit',
+              editMode ? '完成' : '編輯',
               style: TextStyle(
                   fontSize: 20,
                   color: Color(0xFF1cafff),
@@ -288,7 +280,7 @@ class _AddWheelScreenState extends State<AddWheelScreen> {
           child: CupertinoTextField(
             enabled: !editMode,
             controller: wheelNameController,
-            placeholder: 'Enter wheel title',
+            placeholder: '輸入轉盤標題',
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
@@ -321,7 +313,7 @@ class _AddWheelScreenState extends State<AddWheelScreen> {
                     Container(
                       width: 70,
                       padding: EdgeInsets.only(top: 10),
-                      child: Text("Weight",
+                      child: Text("比例",
                           style: TextStyle(
                               fontFamily: 'Helvetica-neu-bold',
                               fontSize: 15,
@@ -354,7 +346,7 @@ class _AddWheelScreenState extends State<AddWheelScreen> {
                     return Padding(
                       key: Key(slice['id'].toString()),
                       padding: const EdgeInsets.symmetric(
-                          vertical: 8, horizontal: 15),
+                          vertical: 5, horizontal: 15),
                       child: Row(
                         children: [
                           ReorderableDragStartListener(
@@ -411,7 +403,7 @@ class _AddWheelScreenState extends State<AddWheelScreen> {
                               child: CupertinoTextField(
                                 controller: textEditorControllers[index],
                                 enabled: !editMode,
-                                placeholder: 'Slice text',
+                                placeholder: '項目名稱',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20,
@@ -485,7 +477,7 @@ class _AddWheelScreenState extends State<AddWheelScreen> {
           ),
           !editMode
               ? Column(
-                  spacing: 10,
+                  spacing: 15,
                   children: [
                     CupertinoButton(
                       onPressed: () {
@@ -507,16 +499,16 @@ class _AddWheelScreenState extends State<AddWheelScreen> {
                       child: Icon(
                         CupertinoIcons.add,
                         color: CupertinoColors.white,
-                        size: 50,
+                        size: 40,
                       ),
                     ),
                     CupertinoButton(
                       padding:
-                          EdgeInsets.symmetric(vertical: 15, horizontal: 130),
+                          EdgeInsets.symmetric(vertical: 5, horizontal: 130),
                       color: Color(0xFF1cafff),
                       borderRadius: BorderRadius.all(Radius.circular(50)),
                       child: Text(
-                        "Done",
+                        "完成",
                         style: TextStyle(
                           fontSize: 30,
                           color: CupertinoColors.white,
@@ -533,7 +525,7 @@ class _AddWheelScreenState extends State<AddWheelScreen> {
                       },
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 4,
                     )
                   ],
                 )

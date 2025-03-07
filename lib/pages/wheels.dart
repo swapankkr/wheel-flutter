@@ -87,18 +87,14 @@ class _WheelsScreenState extends State<WheelsScreen> {
         context: context,
         builder: (BuildContext context) {
           return CupertinoAlertDialog(
-            title: Text(
-              "Confirmation",
-              style: TextStyle(fontSize: 20),
-            ),
             content: Text(
-              "Aue you sure to remove this wheel?",
+              "消除嗎?",
               style: TextStyle(fontSize: 16),
             ),
             actions: [
               CupertinoDialogAction(
                 child: Text(
-                  'NO',
+                  '取消',
                   style: TextStyle(fontSize: 20, color: Color(0xFF1cafff)),
                 ),
                 onPressed: () {
@@ -107,7 +103,7 @@ class _WheelsScreenState extends State<WheelsScreen> {
               ),
               CupertinoDialogAction(
                 child: Text(
-                  'YES',
+                  '刪除',
                   style: TextStyle(fontSize: 20, color: Color(0xFFfb6e74)),
                 ),
                 onPressed: () {

@@ -51,7 +51,7 @@ class _TimesScreenState extends State<TimesScreen> {
           ),
         ),
         middle: Text(
-          "Spin Time",
+          "旋轉時間",
           style: TextStyle(fontSize: 25, color: Colors.white),
         ),
         border: Border(bottom: BorderSide(color: Color(0xFF4d5261), width: 1)),
@@ -75,7 +75,7 @@ class _TimesScreenState extends State<TimesScreen> {
                       title: Transform.translate(
                         offset: Offset(0, 0),
                         child: Text(
-                          "3 sec: Fastest",
+                          "3 秒",
                           style: TextStyle(
                               fontSize: 17, fontWeight: FontWeight.bold),
                         ),
@@ -90,7 +90,7 @@ class _TimesScreenState extends State<TimesScreen> {
                         pref.then((pref) async {
                           await pref.setInt('spinTime', 3);
                           await pref.setString(
-                              'spinTimeText', "3 sec: Fastest");
+                              'spinTimeText', "3 秒");
                           await Navigator.pushReplacementNamed(context, 'settings');
                         });
                       },
@@ -99,7 +99,7 @@ class _TimesScreenState extends State<TimesScreen> {
                         title: Transform.translate(
                           offset: Offset(0, 0),
                           child: Text(
-                            "5 sec: Fast",
+                            "5 秒",
                             style: TextStyle(
                                 fontSize: 17, fontWeight: FontWeight.bold),
                           ),
@@ -113,7 +113,7 @@ class _TimesScreenState extends State<TimesScreen> {
                         onPressed: (context) {
                           pref.then((pref) async {
                             await pref.setInt('spinTime', 5);
-                            await pref.setString('spinTimeText', "5 sec: Fast");
+                            await pref.setString('spinTimeText', "5 秒");
                             await Navigator.pushReplacementNamed(context, 'settings');
                           });
                         }),
@@ -121,7 +121,7 @@ class _TimesScreenState extends State<TimesScreen> {
                         title: Transform.translate(
                           offset: Offset(0, 0),
                           child: Text(
-                            "7 sec: A little faster",
+                            "7 秒",
                             style: TextStyle(
                                 fontSize: 17, fontWeight: FontWeight.bold),
                           ),
@@ -136,7 +136,7 @@ class _TimesScreenState extends State<TimesScreen> {
                           pref.then((pref) async {
                             await pref.setInt('spinTime', 7);
                             await pref.setString(
-                                'spinTimeText', "7 sec: A little faster");
+                                'spinTimeText', "7 秒");
                             await Navigator.pushReplacementNamed(context, 'settings');
                           });
                         }),
@@ -144,7 +144,7 @@ class _TimesScreenState extends State<TimesScreen> {
                         title: Transform.translate(
                           offset: Offset(0, 0),
                           child: Text(
-                            "9 sec: Normal",
+                            "9 秒",
                             style: TextStyle(
                                 fontSize: 17, fontWeight: FontWeight.bold),
                           ),
@@ -159,7 +159,7 @@ class _TimesScreenState extends State<TimesScreen> {
                           pref.then((pref) async {
                             await pref.setInt('spinTime', 9);
                             await pref.setString(
-                                'spinTimeText', "9 sec: Normal");
+                                'spinTimeText', "9 秒");
                             await Navigator.pushReplacementNamed(context, 'settings');
                           });
                         }),
@@ -167,7 +167,7 @@ class _TimesScreenState extends State<TimesScreen> {
                         title: Transform.translate(
                           offset: Offset(0, 0),
                           child: Text(
-                            "12 sec: A little slower",
+                            "12 秒",
                             style: TextStyle(
                                 fontSize: 17, fontWeight: FontWeight.bold),
                           ),
@@ -182,7 +182,7 @@ class _TimesScreenState extends State<TimesScreen> {
                           pref.then((pref) async {
                             await pref.setInt('spinTime', 12);
                             await pref.setString(
-                                'spinTimeText', "12 sec: A little slower");
+                                'spinTimeText', "12 秒");
                             await Navigator.pushReplacementNamed(context, 'settings');
                           });
                         }),
@@ -190,7 +190,7 @@ class _TimesScreenState extends State<TimesScreen> {
                         title: Transform.translate(
                           offset: Offset(0, 0),
                           child: Text(
-                            "15 sec: Slow",
+                            "15 秒",
                             style: TextStyle(
                                 fontSize: 17, fontWeight: FontWeight.bold),
                           ),
@@ -205,7 +205,7 @@ class _TimesScreenState extends State<TimesScreen> {
                           pref.then((pref) async {
                             await pref.setInt('spinTime', 15);
                             await pref.setString(
-                                'spinTimeText', "15 sec: Slow");
+                                'spinTimeText', "15 秒");
                             await Navigator.pushReplacementNamed(context, 'settings');
                           });
                         }),
@@ -213,7 +213,7 @@ class _TimesScreenState extends State<TimesScreen> {
                         title: Transform.translate(
                           offset: Offset(0, 0),
                           child: Text(
-                            "20 sec: Slowest",
+                            "20 秒",
                             style: TextStyle(
                                 fontSize: 17, fontWeight: FontWeight.bold),
                           ),
@@ -228,7 +228,7 @@ class _TimesScreenState extends State<TimesScreen> {
                           pref.then((pref) async {
                             await pref.setInt('spinTime', 20);
                             await pref.setString(
-                                'spinTimeText', "20 sec: Slowest");
+                                'spinTimeText', "20 秒");
                             await Navigator.pushReplacementNamed(context, 'settings');
                           });
                         }),

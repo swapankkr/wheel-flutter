@@ -15,7 +15,7 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   Future<SharedPreferences> pref = SharedPreferences.getInstance();
   late bool remove_once_chosen = true;
-  late String spinTimeText = "9 sec: Normal";
+  late String spinTimeText = "9 秒";
 
   @override
   void initState() {
@@ -23,7 +23,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     pref.then((pref) {
       setState(() {
         remove_once_chosen = pref.getBool('removeOnceChosen') ?? true;
-        spinTimeText = pref.getString('spinTimeText') ?? "9 sec: Normal";
+        spinTimeText = pref.getString('spinTimeText') ?? "9 秒";
       });
     });
   }
@@ -87,7 +87,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       title: Transform.translate(
                         offset: Offset(0, 0),
                         child: Text(
-                          "高級包",//"Premium Pack",
+                          "進階版套件",//"Premium Pack",
                           style: TextStyle(fontSize: 15),
                         ),
                       ),
@@ -95,7 +95,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ],
                 ),
                 SettingsSection(
-                  title: Text("Current Wheel Settings",
+                  title: Text("目前轉盤設定",
                       style:
                           TextStyle(fontSize: 15, fontFamily: 'Helvetica-nue')),
                   tiles: <SettingsTile>[
@@ -113,7 +113,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       title: Transform.translate(
                         offset: Offset(0, 0),
                         child: Text(
-                          "Spin Time",
+                          "旋轉時間",
                           style: TextStyle(fontSize: 15),
                         ),
                       ),
@@ -130,11 +130,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       title: Transform.translate(
                         offset: Offset(0, 0),
                         child: Text(
-                          "BGM",
+                          "背景音樂",
                           style: TextStyle(fontSize: 15),
                         ),
                       ),
-                      trailing: Text("Drum Roll 1",
+                      trailing: Text("連續擊鼓聲 1",
                           style: TextStyle(
                               fontSize: 16, fontFamily: 'Helvetica-nue')),
                     ),
@@ -146,11 +146,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       title: Transform.translate(
                         offset: Offset(0, 0),
                         child: Text(
-                          "Decision Sound",
+                          "決策音效",
                           style: TextStyle(fontSize: 15),
                         ),
                       ),
-                      trailing: Text("SFX1 Cymbal",
+                      trailing: Text("音效1 鈸",
                           style: TextStyle(
                               fontSize: 16, fontFamily: 'Helvetica-nue')),
                     ),
@@ -167,11 +167,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       title: Transform.translate(
                         offset: Offset(-5, 0),
                         child: Text(
-                          "Effect",
+                          "特效",
                           style: TextStyle(fontSize: 15),
                         ),
                       ),
-                      trailing: Text("Shift (1 before)",
+                      trailing: Text("移位(1之前)",
                           style: TextStyle(
                               fontSize: 16, fontFamily: 'Helvetica-nue')),
                     ),
@@ -184,7 +184,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       title: Transform.translate(
                         offset: Offset(0, 0),
                         child: Text(
-                          "Effect Frequency",
+                          "特效頻率",
                           style: TextStyle(fontSize: 15),
                         ),
                       ),
@@ -201,7 +201,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       title: Transform.translate(
                         offset: Offset(0, 0),
                         child: Text(
-                          "Remove Once Chosen",
+                          "選擇後立即移除",
                           style: TextStyle(fontSize: 15),
                         ),
                       ),
@@ -224,7 +224,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       title: Transform.translate(
                         offset: Offset(0, 0),
                         child: Text(
-                          "Tap to Stop",
+                          "點選來停止",
                           style: TextStyle(fontSize: 15),
                         ),
                       ),
@@ -237,7 +237,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ],
                 ),
                 SettingsSection(
-                  title: Text('Default',
+                  title: Text('預設',
                       style:
                           TextStyle(fontSize: 15, fontFamily: 'Helvetica-nue')),
                   tiles: <SettingsTile>[
@@ -253,7 +253,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         title: Transform.translate(
                           offset: Offset(0, 0),
                           child: Text(
-                            "Default Settings",
+                            "預設值",
                             style: TextStyle(fontSize: 15),
                           ),
                         )),
@@ -270,7 +270,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         title: Transform.translate(
                           offset: Offset(0, 0),
                           child: Text(
-                            "Help",
+                            "幫助",
                             style: TextStyle(fontSize: 15),
                           ),
                         )),
@@ -279,7 +279,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         title: Transform.translate(
                           offset: Offset(0, 0),
                           child: Text(
-                            "App Information",
+                            "應用程式資訊",
                             style: TextStyle(fontSize: 15),
                           ),
                         )),
@@ -288,7 +288,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         title: Transform.translate(
                           offset: Offset(0, 0),
                           child: Text(
-                            "Dark Mode",
+                            "深色模式",
                             style: TextStyle(fontSize: 15),
                           ),
                         )),
@@ -297,7 +297,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         title: Transform.translate(
                           offset: Offset(0, 0),
                           child: Text(
-                            "Passcode Lock",
+                            "密碼鎖定",
                             style: TextStyle(fontSize: 15),
                           ),
                         )),
@@ -306,14 +306,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         title: Transform.translate(
                           offset: Offset(0, 0),
                           child: Text(
-                            "Languages",
+                            "變更語言",
                             style: TextStyle(fontSize: 15),
                           ),
                         )),
                   ],
                 ),
                 SettingsSection(
-                  title: Text('Simple Series Apps',
+                  title: Text('簡單系列App',
                       style:
                           TextStyle(fontSize: 15, fontFamily: 'Helvetica-nue')),
                   tiles: <SettingsTile>[
@@ -325,7 +325,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         title: Transform.translate(
                           offset: Offset(0, 0),
                           child: Text(
-                            "Simple Calendar (AD)",
+                            "簡單日曆 (AD)",
                             style: TextStyle(fontSize: 15),
                           ),
                         )),
@@ -337,7 +337,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         title: Transform.translate(
                           offset: Offset(0, 0),
                           child: Text(
-                            "Smart Diet (AD)",
+                            "節食管理SmartDiet (AD)",
                             style: TextStyle(fontSize: 15),
                           ),
                         )),
@@ -349,7 +349,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         title: Transform.translate(
                           offset: Offset(0, 0),
                           child: Text(
-                            "Monthly Note (AD)",
+                            "簡單記賬簿 (AD)",
                             style: TextStyle(fontSize: 15),
                           ),
                         )),
@@ -361,7 +361,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         title: Transform.translate(
                           offset: Offset(0, 0),
                           child: Text(
-                            "Simple Diary (AD)",
+                            "簡單日記 (AD)",
                             style: TextStyle(fontSize: 15),
                           ),
                         )),
@@ -373,7 +373,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         title: Transform.translate(
                           offset: Offset(0, 0),
                           child: Text(
-                            "Simple Notepad (AD)",
+                            "簡單記事本 (AD)",
                             style: TextStyle(fontSize: 15),
                           ),
                         )),
@@ -385,14 +385,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         title: Transform.translate(
                           offset: Offset(0, 0),
                           child: Text(
-                            "N Calendar (AD)",
+                            "簡單日曆 (AD)",
                             style: TextStyle(fontSize: 15),
                           ),
                         ))
                   ],
                 ),
                 SettingsSection(
-                    tiles: [SettingsTile(title: Text("© 轉盤+ ver 2.2.1"))])
+                    tiles: [SettingsTile(title: Text("©轉盤+ ver 2.2.1"))])
               ],
             ),
           )

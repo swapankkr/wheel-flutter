@@ -45,6 +45,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late bool showReset = false;
   late bool showAgain = false;
   late bool showSet = false;
+  late bool loading = true;
 
   _HomeScreenState();
 
@@ -70,11 +71,20 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       speaker = pref.getBool('speaker') ?? true;
       if (token == "") {
         initUser();
-        wheel = {};
+
+        setState(() {
+          loading = false;
+          wheel = {};
+        });
+
       } else {
         lastWheelId = pref.getInt('lastWheelId') ?? 0;
         if (lastWheelId != 0) {
           _getWheel(token, lastWheelId);
+        } else {
+          setState(() {
+            loading = false;
+          });
         }
       }
       await bgm.setVolume(speaker ? 1 : 0);
@@ -82,6 +92,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       spinTime = pref.getInt('spinTime') ?? 9;
       removeOnceChosen = pref.getBool('removeOnceChosen') ?? true;
     });
+    loading = true;
   }
 
   Color _getColor(String hexColorCode) {
@@ -104,6 +115,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         originalItems = jsonDecode(jsonEncode(wheel['items']));
       });
     }
+    setState(() {
+      loading = false;
+    });
   }
 
   Future<int> _getWinnerPos() async {
@@ -127,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           }
           all.shuffle();
           return all[0];
-        }else{
+        } else {
           return index;
         }
       }
@@ -322,6 +336,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               padding: const EdgeInsets.all(20),
               child: Column(
                 children: [
+                  SizedBox(
+                    height: 43,
+                  ),
                   Expanded(
                     child: Center(
                       child: SizedBox(
@@ -381,7 +398,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   ),
                                   FortuneIndicator(
                                     child: Transform.translate(
-                                      offset: Offset(0, -130),
+                                      offset: Offset(0, -110),
                                       child: Text(
                                         winner,
                                         style: TextStyle(
@@ -476,7 +493,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                               padding: EdgeInsets.symmetric(
                                   vertical: 0, horizontal: 10),
                               child: Text(
-                                'Again',
+                                '再轉一次',
                                 style: TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
@@ -500,7 +517,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                               padding: EdgeInsets.symmetric(
                                   vertical: 0, horizontal: 10),
                               child: Text(
-                                'Reset',
+                                '重設',
                                 style: TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
@@ -558,7 +575,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           padding: const EdgeInsets.all(0),
                           child: const Icon(
                             Icons.edit_outlined,
-                            size: 50,
+                            size: 40,
                             color: Color(0xFFFFFFFF),
                           ),
                         ), // Add an icon
@@ -573,136 +590,150 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               margin: EdgeInsets.only(top: 10, left: 10, right: 10),
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 30, horizontal: 12),
-                child: Stack(
-                  children: [
-                    Text(
-                      "Tap the '+' button at the top right to create a new wheel!",
-                      style: TextStyle(
-                          fontSize: 23,
-                          color: Colors.white,
-                          fontFamily: 'Helvetica-neu-bold',
-                          decoration: TextDecoration.none),
-                      textAlign: TextAlign.center,
-                    ),
-                    Column(
-                      children: [
-                        Expanded(
-                          child: Center(
-                            child: SizedBox(
-                              height: MediaQuery.sizeOf(context).width - 60,
-                              width: MediaQuery.sizeOf(context).width - 60,
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    // color: Colors.blue,
-                                    padding: EdgeInsets.all(10),
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(
-                                                (MediaQuery.sizeOf(context)
-                                                            .width -
-                                                        60) /
-                                                    2)),
-                                        color: Color(0xff292c3b),
-                                        boxShadow: [
-                                          BoxShadow(
-                                              color: Color(0xFF181823),
-                                              blurRadius: 5.0,
-                                              blurStyle: BlurStyle.outer)
-                                        ]),
+                child: loading
+                    ? SizedBox()
+                    : Stack(
+                        children: [
+                          Text(
+                            "點選右上角的「+」按鈕來建立新轉盤!",
+                            style: TextStyle(
+                                fontSize: 23,
+                                color: Colors.white,
+                                fontFamily: 'Helvetica-neu-bold',
+                                decoration: TextDecoration.none),
+                            textAlign: TextAlign.center,
+                          ),
+                          Column(
+                            children: [
+                              Expanded(
+                                child: Center(
+                                  child: SizedBox(
+                                    height:
+                                        MediaQuery.sizeOf(context).width - 60,
+                                    width:
+                                        MediaQuery.sizeOf(context).width - 60,
                                     child: Stack(
+                                      alignment: Alignment.center,
                                       children: [
-                                        Positioned(
-                                          child: FortuneWheel(
-                                            duration: Duration(seconds: 5),
-                                            rotationCount: 10,
-                                            curve: Curves.decelerate,
-                                            animateFirst: false,
-                                            physics: NoPanPhysics(),
-                                            onAnimationStart: () =>
-                                                isAnimating = true,
-                                            onAnimationEnd: () =>
-                                                isAnimating = false,
-                                            hapticImpact: HapticImpact.none,
-                                            indicators: [
-                                              FortuneIndicator(
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                      color: Color(0xFF434655),
-                                                      borderRadius: BorderRadius
-                                                          .all(Radius.circular(
-                                                              MediaQuery.sizeOf(
-                                                                          context)
-                                                                      .width -
-                                                                  60))),
-                                                ),
-                                              ),
-                                              FortuneIndicator(
-                                                child: Transform.translate(
-                                                  offset: Offset(0, -20),
-                                                  child: Transform.rotate(
-                                                    angle: pi,
-                                                    child: CustomPaint(
-                                                      size: Size(60, 50),
-                                                      painter:
-                                                          RoundedTrianglePainter(),
+                                        Container(
+                                          // color: Colors.blue,
+                                          padding: EdgeInsets.all(10),
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(
+                                                      (MediaQuery.sizeOf(
+                                                                      context)
+                                                                  .width -
+                                                              60) /
+                                                          2)),
+                                              color: Color(0xff292c3b),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                    color: Color(0xFF181823),
+                                                    blurRadius: 5.0,
+                                                    blurStyle: BlurStyle.outer)
+                                              ]),
+                                          child: Stack(
+                                            children: [
+                                              Positioned(
+                                                child: FortuneWheel(
+                                                  duration:
+                                                      Duration(seconds: 5),
+                                                  rotationCount: 10,
+                                                  curve: Curves.decelerate,
+                                                  animateFirst: false,
+                                                  physics: NoPanPhysics(),
+                                                  onAnimationStart: () =>
+                                                      isAnimating = true,
+                                                  onAnimationEnd: () =>
+                                                      isAnimating = false,
+                                                  hapticImpact:
+                                                      HapticImpact.none,
+                                                  indicators: [
+                                                    FortuneIndicator(
+                                                      child: Container(
+                                                        decoration: BoxDecoration(
+                                                            color: Color(
+                                                                0xFF434655),
+                                                            borderRadius: BorderRadius.all(
+                                                                Radius.circular(
+                                                                    MediaQuery.sizeOf(context)
+                                                                            .width -
+                                                                        60))),
+                                                      ),
                                                     ),
-                                                  ),
+                                                    FortuneIndicator(
+                                                      child:
+                                                          Transform.translate(
+                                                        offset: Offset(0, -20),
+                                                        child: Transform.rotate(
+                                                          angle: pi,
+                                                          child: CustomPaint(
+                                                            size: Size(60, 50),
+                                                            painter:
+                                                                RoundedTrianglePainter(),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      alignment:
+                                                          Alignment.topCenter,
+                                                    ),
+                                                    FortuneIndicator(
+                                                        child: ElevatedButton(
+                                                      onPressed: () {},
+                                                      style: ElevatedButton
+                                                          .styleFrom(
+                                                        shape:
+                                                            const CircleBorder(),
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(20),
+                                                        // Adjust size
+                                                        backgroundColor:
+                                                            Color(0xff3b3f4b),
+                                                        // Button color
+                                                        foregroundColor:
+                                                            Color(0xFF8dd5fc),
+                                                        // Text/icon color
+                                                        elevation:
+                                                            0, // Shadow effect
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(20),
+                                                        child: const Text(
+                                                          'START',
+                                                          style: TextStyle(
+                                                              letterSpacing: 3),
+                                                        ),
+                                                      ), // Add an icon
+                                                    ))
+                                                  ],
+                                                  items: [
+                                                    for (var item in [1, 2])
+                                                      FortuneItem(
+                                                          child: Text(''),
+                                                          style: FortuneItemStyle(
+                                                              color: Color(
+                                                                  0xFF434655),
+                                                              borderColor: Color(
+                                                                  0xFF434655)))
+                                                  ],
                                                 ),
-                                                alignment: Alignment.topCenter,
                                               ),
-                                              FortuneIndicator(
-                                                  child: ElevatedButton(
-                                                onPressed: () {},
-                                                style: ElevatedButton.styleFrom(
-                                                  shape: const CircleBorder(),
-                                                  padding:
-                                                      const EdgeInsets.all(20),
-                                                  // Adjust size
-                                                  backgroundColor:
-                                                      Color(0xff3b3f4b),
-                                                  // Button color
-                                                  foregroundColor:
-                                                      Color(0xFF8dd5fc),
-                                                  // Text/icon color
-                                                  elevation: 0, // Shadow effect
-                                                ),
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(20),
-                                                  child: const Text(
-                                                    'START',
-                                                    style: TextStyle(
-                                                        letterSpacing: 3),
-                                                  ),
-                                                ), // Add an icon
-                                              ))
-                                            ],
-                                            items: [
-                                              for (var item in [1, 2])
-                                                FortuneItem(
-                                                    child: Text(''),
-                                                    style: FortuneItemStyle(
-                                                        color:
-                                                            Color(0xFF434655),
-                                                        borderColor:
-                                                            Color(0xFF434655)))
                                             ],
                                           ),
-                                        ),
+                                        )
                                       ],
                                     ),
-                                  )
-                                ],
+                                  ),
+                                ),
                               ),
-                            ),
+                            ],
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                        ],
+                      ),
               ),
             ),
     );
